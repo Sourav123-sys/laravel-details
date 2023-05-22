@@ -4,7 +4,8 @@ You have a Laravel application with a form that submits user information using a
 
 use Illuminate\Http\Request;
 
-public function store(Request $request) { $name = $request->input('name');
+public function store(Request $request)
+ { $name = $request->input('name');
 
 }
 
@@ -13,7 +14,8 @@ public function store(Request $request) { $name = $request->input('name');
 
 use Illuminate\Http\Request;
 
-public function retrieveUserAgent(Request $request) { $userAgent = $request->header('User-Agent');
+public function retrieveUserAgent(Request $request)
+ { $userAgent = $request->header('User-Agent');
 
 }
 
@@ -23,7 +25,8 @@ You are building an API endpoint in Laravel that accepts a GET request with a 'p
 
 use Illuminate\Http\Request;
 
-public function handleGetRequest(Request $request) { $page = $request->input('page', null);
+public function handleGetRequest(Request $request)
+ { $page = $request->input('page', null);
 
 }
 
@@ -36,7 +39,10 @@ Create a JSON response in Laravel with the following data:
 
 use Illuminate\Http\Response;
 
-public function jsonResponse() { $data = [ 'message' => 'Success', 'data' => [ 'name' => 'John Doe', 'age' => 25 ] ];
+public function jsonResponse() 
+{ $data = [ 'message' => 'Success', 
+'data' => [ 'name' => 'John Doe',
+ 'age' => 25 ] ];
 
 return response()->json($data);
 }
@@ -46,7 +52,12 @@ You are implementing a file upload feature in your Laravel application. Write th
 
 use Illuminate\Http\Request;
 
-public function handleFileUpload(Request $request) { if ($request->hasFile('avatar')) { $uploadedFile = $request->file('avatar'); $path = $uploadedFile->store('uploads', 'public'); $filename = $uploadedFile->getClientOriginalName(); $fullPath = 'public/' . $path;
+public function handleFileUpload(Request $request) 
+{ if ($request->hasFile('avatar')) 
+{ $uploadedFile = $request->file('avatar'); 
+$path = $uploadedFile->store('uploads', 'public');
+ $filename = $uploadedFile->getClientOriginalName();
+  $fullPath = 'public/' . $path;
 
 }
 }
@@ -57,7 +68,8 @@ public function handleFileUpload(Request $request) { if ($request->hasFile('avat
 
 use Illuminate\Http\Request;
 
-public function retrieveRememberToken(Request $request) { $rememberToken = $request->cookie('remember_token', null);
+public function retrieveRememberToken(Request $request)
+ { $rememberToken = $request->cookie('remember_token', null);
 
 }
 
@@ -70,9 +82,13 @@ Create a route in Laravel that handles a POSTrequest to the'/submit'URL. Inside 
 
 "message": "Form submitted successfully."
 
-} use Illuminate\Http\Request; use Illuminate\Support\Facades\Route; use Illuminate\Http\JsonResponse;
+}
 
-Route::post('/submit', function (Request $request) { $email = $request->input('email');
+ use Illuminate\Http\Request; use Illuminate\Support\Facades\Route; 
+ use Illuminate\Http\JsonResponse;
+
+Route::post('/submit', function (Request $request)
+ { $email = $request->input('email');
 
 $response = [
     'success' => true,
