@@ -1,66 +1,83 @@
-<p align="center"><a href="https://laravel.com" target="_blank"><img src="https://raw.githubusercontent.com/laravel/art/master/logo-lockup/5%20SVG/2%20CMYK/1%20Full%20Color/laravel-logolockup-cmyk-red.svg" width="400" alt="Laravel Logo"></a></p>
+## Question 1:
 
-<p align="center">
-<a href="https://github.com/laravel/framework/actions"><img src="https://github.com/laravel/framework/workflows/tests/badge.svg" alt="Build Status"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/dt/laravel/framework" alt="Total Downloads"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/v/laravel/framework" alt="Latest Stable Version"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/l/laravel/framework" alt="License"></a>
-</p>
+You have a Laravel application with a form that submits user information using a POST request. Write the code to retrieve the 'name' input field value from the request and store it in a variable called $name.
 
-## About Laravel
+use Illuminate\Http\Request;
 
-Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable and creative experience to be truly fulfilling. Laravel takes the pain out of development by easing common tasks used in many web projects, such as:
+public function store(Request $request) { $name = $request->input('name');
 
-- [Simple, fast routing engine](https://laravel.com/docs/routing).
-- [Powerful dependency injection container](https://laravel.com/docs/container).
-- Multiple back-ends for [session](https://laravel.com/docs/session) and [cache](https://laravel.com/docs/cache) storage.
-- Expressive, intuitive [database ORM](https://laravel.com/docs/eloquent).
-- Database agnostic [schema migrations](https://laravel.com/docs/migrations).
-- [Robust background job processing](https://laravel.com/docs/queues).
-- [Real-time event broadcasting](https://laravel.com/docs/broadcasting).
+}
 
-Laravel is accessible, powerful, and provides tools required for large, robust applications.
+## Question 2:
+ In your Laravel application, you want to retrieve the value of the 'User-Agent'header from the current request. Write the code to accomplish this and store the value in a variable called$userAgent.``
 
-## Learning Laravel
+use Illuminate\Http\Request;
 
-Laravel has the most extensive and thorough [documentation](https://laravel.com/docs) and video tutorial library of all modern web application frameworks, making it a breeze to get started with the framework.
+public function retrieveUserAgent(Request $request) { $userAgent = $request->header('User-Agent');
 
-You may also try the [Laravel Bootcamp](https://bootcamp.laravel.com), where you will be guided through building a modern Laravel application from scratch.
+}
 
-If you don't feel like reading, [Laracasts](https://laracasts.com) can help. Laracasts contains over 2000 video tutorials on a range of topics including Laravel, modern PHP, unit testing, and JavaScript. Boost your skills by digging into our comprehensive video library.
+## Question 3
 
-## Laravel Sponsors
+You are building an API endpoint in Laravel that accepts a GET request with a 'page'query parameter. Write the code to retrieve the value of the 'page' parameter from the current request and store it in a variable called$page. If the parameter is not present, set $pagetonull.
 
-We would like to extend our thanks to the following sponsors for funding Laravel development. If you are interested in becoming a sponsor, please visit the Laravel [Patreon page](https://patreon.com/taylorotwell).
+use Illuminate\Http\Request;
 
-### Premium Partners
+public function handleGetRequest(Request $request) { $page = $request->input('page', null);
 
-- **[Vehikl](https://vehikl.com/)**
-- **[Tighten Co.](https://tighten.co)**
-- **[Kirschbaum Development Group](https://kirschbaumdevelopment.com)**
-- **[64 Robots](https://64robots.com)**
-- **[Cubet Techno Labs](https://cubettech.com)**
-- **[Cyber-Duck](https://cyber-duck.co.uk)**
-- **[Many](https://www.many.co.uk)**
-- **[Webdock, Fast VPS Hosting](https://www.webdock.io/en)**
-- **[DevSquad](https://devsquad.com)**
-- **[Curotec](https://www.curotec.com/services/technologies/laravel/)**
-- **[OP.GG](https://op.gg)**
-- **[WebReinvent](https://webreinvent.com/?utm_source=laravel&utm_medium=github&utm_campaign=patreon-sponsors)**
-- **[Lendio](https://lendio.com)**
+}
 
-## Contributing
+Question 4
 
-Thank you for considering contributing to the Laravel framework! The contribution guide can be found in the [Laravel documentation](https://laravel.com/docs/contributions).
+Create a JSON response in Laravel with the following data:
 
-## Code of Conduct
+{ "message": "Success", "data": { "name": "John Doe", "age": 25 }
+}
 
-In order to ensure that the Laravel community is welcoming to all, please review and abide by the [Code of Conduct](https://laravel.com/docs/contributions#code-of-conduct).
+use Illuminate\Http\Response;
 
-## Security Vulnerabilities
+public function jsonResponse() { $data = [ 'message' => 'Success', 'data' => [ 'name' => 'John Doe', 'age' => 25 ] ];
 
-If you discover a security vulnerability within Laravel, please send an e-mail to Taylor Otwell via [taylor@laravel.com](mailto:taylor@laravel.com). All security vulnerabilities will be promptly addressed.
+return response()->json($data);
+}
 
-## License
+## Question 5: 
+You are implementing a file upload feature in your Laravel application. Write the code to handle a file upload named 'avatar'in the currentrequestand store the uploaded file in the'public/uploads'directory. Use theoriginal filename for the uploaded file.
 
-The Laravel framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
+use Illuminate\Http\Request;
+
+public function handleFileUpload(Request $request) { if ($request->hasFile('avatar')) { $uploadedFile = $request->file('avatar'); $path = $uploadedFile->store('uploads', 'public'); $filename = $uploadedFile->getClientOriginalName(); $fullPath = 'public/' . $path;
+
+}
+}
+
+## Question 6:
+
+ Retrieve the value of the 'remember_token'cookie from the current request in Laravel and store it in a variable called$rememberToken. If the cookie is not present, set $rememberToken to null.
+
+use Illuminate\Http\Request;
+
+public function retrieveRememberToken(Request $request) { $rememberToken = $request->cookie('remember_token', null);
+
+}
+
+## Question 7: 
+Create a route in Laravel that handles a POSTrequest to the'/submit'URL. Inside the route closure, retrieve the'email'input parameter from the request and store it in a variable called$email. Return a JSON response with the following data:
+
+{
+
+"success": true,
+
+"message": "Form submitted successfully."
+
+} use Illuminate\Http\Request; use Illuminate\Support\Facades\Route; use Illuminate\Http\JsonResponse;
+
+Route::post('/submit', function (Request $request) { $email = $request->input('email');
+
+$response = [
+    'success' => true,
+    'message' => 'Form submitted successfully.'
+];
+
+return new JsonResponse($response);
+});
