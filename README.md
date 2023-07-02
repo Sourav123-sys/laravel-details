@@ -244,6 +244,7 @@ class Post extends Model
 
 
 # Task 9 Write a Blade template to display all posts and their associated categories. Use a loop to iterate over the posts and display their details.
+
 <!DOCTYPE html>
 <html>
 <head>
