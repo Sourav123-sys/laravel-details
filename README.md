@@ -1,4 +1,4 @@
-# Task 1 Create a new migration file to add a new table named "categories" to the database. The table should have the following columns: id (primary key, auto-increment) name (string) created_at (timestamp) updated_at (timestamp)
+ Task 1 Create a new migration file to add a new table named "categories" to the database. The table should have the following columns: id (primary key, auto-increment) name (string) created_at (timestamp) updated_at (timestamp)
 
 <?php
 
@@ -27,7 +27,7 @@ class CreateCategoriesTable extends Migration
 php artisan make:migration create_categories_table --create=categories
 php artisan migrate
 
-# Task 2  Create a new model named "Category" associated with the "categories" table. Define the necessary properties and relationships.
+ Task 2  Create a new model named "Category" associated with the "categories" table. Define the necessary properties and relationships.
 
 <?php
 
@@ -59,7 +59,7 @@ class Category extends Model
     protected $dates = ['created_at', 'updated_at'];
 }
 
-# Task 3 Write a migration file to add a foreign key constraint to the "posts" table. The foreign key should reference the "categories" table on the "category_id" column.
+ Task 3 Write a migration file to add a foreign key constraint to the "posts" table. The foreign key should reference the "categories" table on the "category_id" column.
 
 <?php
 
@@ -103,7 +103,7 @@ php artisan make:migration add_foreign_key_to_posts_table --table=posts
 php artisan migrate
 
 
-# Task 4 Create a relationship between the "Post" and "Category" models. A post belongs to a category, and a category can have multiple posts.
+ Task 4 Create a relationship between the "Post" and "Category" models. A post belongs to a category, and a category can have multiple posts.
 <?php
 
 namespace App;
@@ -146,7 +146,7 @@ $category = $post->category;
 $category = Category::find(1);
 $posts = $category->posts;
 
-# Task 5 Write a query using Eloquent ORM to retrieve all posts along with their associated categories. Make sure to eager load the categories to optimize the query.
+ Task 5 Write a query using Eloquent ORM to retrieve all posts along with their associated categories. Make sure to eager load the categories to optimize the query.
 
 $posts = Post::with('category')->get();
 foreach ($posts as $post) {
@@ -156,7 +156,7 @@ foreach ($posts as $post) {
     echo "\n";
 }
 
-# Task 6 Implement a method in the "Post" model to get the total number of posts belonging to a specific category. The method should accept the category ID as a parameter and return the count.
+ Task 6 Implement a method in the "Post" model to get the total number of posts belonging to a specific category. The method should accept the category ID as a parameter and return the count.
 
 <?php
 
@@ -184,7 +184,7 @@ $postsCount = Post::getPostsCountByCategory($categoryId);
 echo "Total posts for category with ID $categoryId: " . $postsCount;
 
 
-# Task 7 Create a new route in the web.php file to handle the following URL pattern: "/posts/{id}/delete". Implement the corresponding controller method to delete a post by its ID. Soft delete should be used.
+ Task 7 Create a new route in the web.php file to handle the following URL pattern: "/posts/{id}/delete". Implement the corresponding controller method to delete a post by its ID. Soft delete should be used.
 use App\Http\Controllers\PostController;
 
 Route::delete('/posts/{id}/delete', [PostController::class, 'destroy']);
@@ -213,7 +213,7 @@ class PostController extends Controller
     }
 }
 
-# Task 8 Implement a method in the "Post" model to get all posts that have been soft deleted. The method should return a collection of soft deleted posts.
+ Task 8 Implement a method in the "Post" model to get all posts that have been soft deleted. The method should return a collection of soft deleted posts.
 <?php
 
 namespace App;
@@ -243,7 +243,7 @@ class Post extends Model
 
 
 
-# Task 9 Write a Blade template to display all posts and their associated categories. Use a loop to iterate over the posts and display their details.
+ Task 9 Write a Blade template to display all posts and their associated categories. Use a loop to iterate over the posts and display their details.
 <!DOCTYPE html>
 <html>
 <head>
@@ -279,7 +279,7 @@ public function index()
 }
 
 
-# Task 10 Create a new route in the web.php file to handle the following URL pattern: "/categories/{id}/posts". Implement the corresponding controller method to retrieve all posts belonging to a specific category. The category ID should be passed as a parameter to the method.
+ Task 10 Create a new route in the web.php file to handle the following URL pattern: "/categories/{id}/posts". Implement the corresponding controller method to retrieve all posts belonging to a specific category. The category ID should be passed as a parameter to the method.
 use App\Http\Controllers\CategoryController;
 
 Route::get('/categories/{id}/posts', [CategoryController::class, 'getPostsByCategory']);
@@ -325,7 +325,7 @@ class CategoryController extends Controller
 </body>
 </html>
 
-# Task 11 Implement a method in the "Category" model to get the latest post associated with the category. The method should return the post object.
+ Task 11 Implement a method in the "Category" model to get the latest post associated with the category. The method should return the post object.
 
 
 <?php
@@ -351,7 +351,7 @@ class Category extends Model
 $category = Category::find(1);
 $latestPost = $category->latestPost;
 
-# Task 12 Write a Blade template to display the latest post for each category. Use a loop to iterate over the categories and display the post details.
+ Task 12 Write a Blade template to display the latest post for each category. Use a loop to iterate over the categories and display the post details.
 
 <!DOCTYPE html>
 <html>
